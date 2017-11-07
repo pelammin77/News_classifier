@@ -52,6 +52,7 @@ area in Kabul, known as the Green Zone, will be expanded, and only official traf
 summary = summary.lower()
 print(cl.classify(summary))
 print ("Normal text:", normal_text)
+print("Normalize text length:", len(normal_text))
 #text = text.strip()
 #text = text.lower()
 
