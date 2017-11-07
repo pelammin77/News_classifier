@@ -1,35 +1,11 @@
 from textblob.classifiers import NaiveBayesClassifier
 from data import *
 import random
-
-def get_data_from_file(filename,tag = "sci"):
-    a = []
-    terms = open(filename, 'r').read()
-    terms = terms.replace('of', '')
-    terms = terms.replace('for', '')
-    terms = terms.replace('is', '')
-    terms = terms.replace('as', '')
-    terms = terms.replace('to', '')
-    terms = terms.replace('or', '')
-    terms = terms.replace('the', '')
-    terms = terms.replace('and', '')
-    terms = terms.replace('in', '')
-    for t in terms.split('\n'):
-        if t == '':
-            continue
-        t = t.strip()
-        t = t.lower()
-       # for char in string.punctuation:
-        #    t = t.replace(char, '')
-
-        a.append((t, tag))
-
-
-
-# train_terms.extend(a)
-    print(a)
-    print(len(train_terms))
-    print(len(a))
+import glob
+from nltk.tokenize import sent_tokenize
+from nltk import word_tokenize
+from nltk.corpus import stopwords
+from preprocessing_data import *
 
 
 
@@ -43,6 +19,8 @@ print(words)
 print(newsTrain)
 '''
 #get_data_from_file("medi_train.txt",'medical')
+text = read_all_files('entertainment/*')
+normal_text = normalize_text(text)
 
 random.shuffle(train_terms)
 random.shuffle(test_terms)
@@ -73,9 +51,37 @@ area in Kabul, known as the Green Zone, will be expanded, and only official traf
   Afghanistan until victory.'''
 summary = summary.lower()
 print(cl.classify(summary))
+print ("Normal text:", normal_text)
+#text = text.strip()
+#text = text.lower()
+
 #('', 'business'),
 #('effective demand', 'business'),
 #('effective tax rate', 'business'),
 #('entrepreneur in heat', 'business'),
 #result = cl.classify("I don't like their soup")
 #print(result)
+#ps = PorterStemmer()
+#stop_words = set(stopwords.words("english"))
+#print (stop_words)
+#filtered_text = []
+#stem_words = []
+#words = word_tokenize(text)
+#word_count = len(words)
+#sents = sent_tokenize(text)
+#sents_count = len(sents)
+#for w in words:
+ #   if w not in stop_words:
+  #      filtered_text.append(w)
+#for w in filtered_text:
+ #   stem_w = ps.stem(w)
+   # stem_words.append(w)
+
+#print("Sent count", sents_count)
+#print("Word count", word_count)
+#print ("word count without sw", len(filtered_text))
+#stem_words = set(stem_words)
+#print ("stem:", stem_words)
+#print(len(stem_words))
+
+#print("all sents", sents)
